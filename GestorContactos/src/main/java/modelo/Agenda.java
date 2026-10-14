@@ -27,6 +27,14 @@ public class Agenda {
         return false;
     }
 
+    public String buscarTelefono(String nombre) {
+        for (int i = 0; i < cantidad; i++) {
+            if (contactos[i].getNombre().equalsIgnoreCase(nombre)) {
+                return contactos[i].getTelefono();
+            }
+        }
+        return null;
+    }
     public Contacto[] getContactos() {
         return contactos;
     }
