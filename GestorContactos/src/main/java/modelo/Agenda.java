@@ -9,5 +9,29 @@ package modelo;
  * @author santi
  */
 public class Agenda {
-    
+
+    private Contacto[] contactos;
+    private int cantidad;
+
+    public Agenda() {
+        contactos = new Contacto[150];
+        cantidad = 0;
+    }
+
+    public boolean agregarContacto(Contacto c) {
+        if (cantidad < contactos.length) {
+            contactos[cantidad] = c;
+            cantidad++;
+            return true;
+        }
+        return false;
+    }
+
+    public Contacto[] getContactos() {
+        return contactos;
+    }
+
+    public int getCantidad() {
+        return cantidad;
+    }
 }
