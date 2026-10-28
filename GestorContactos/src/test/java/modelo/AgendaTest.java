@@ -74,6 +74,52 @@ public class AgendaTest {
         assertFalse(agenda.agregarContacto(new Contacto("Extra", "3999999999")));
     }
     
+    @Test
+    public void testBuscarTelefono_ContactoExistente() {
+        Agenda agenda = new Agenda();
+        agenda.agregarContacto(new Contacto("Santiago", "3148973615"));
+        agenda.agregarContacto(new Contacto("Laura", "3001234567"));
+        // Buscar "Laura" devuelve su teléfono
+
+        assertEquals("3001234567", agenda.buscarTelefono("Laura"));
+    }
+
+    @Test
+    public void testBuscarTelefono_IgnoraMayusculas() {
+        Agenda agenda = new Agenda();
+        agenda.agregarContacto(new Contacto("Santiago", "3148973615"));
+        // Usa equalsIgnoreCase: "SANTIAGO" encuentra a "Santiago"
+
+        assertEquals("3148973615", agenda.buscarTelefono("SANTIAGO"));
+    }
+
+    @Test
+    public void testBuscarTelefono_ContactoNoExistente() {
+        Agenda agenda = new Agenda();
+        agenda.agregarContacto(new Contacto("Santiago", "3148973615"));
+        // "Pedro" no está en la agenda: devuelve null
+
+        assertNull(agenda.buscarTelefono("Pedro"));
+    }
+
+    @Test
+    public void testBuscarTelefono_AgendaVacia() {
+        Agenda agenda = new Agenda();
+        // No hay contactos que recorrer: devuelve null
+
+        assertNull(agenda.buscarTelefono("Santiago"));
+    }
+
+    @Test
+    public void testBuscarTelefono_NombreRepetidoDevuelvePrimero() {
+        Agenda agenda = new Agenda();
+        agenda.agregarContacto(new Contacto("Laura", "3001111111"));
+        agenda.agregarContacto(new Contacto("Laura", "3002222222"));
+        // Con nombres repetidos devuelve el primero que encuentra
+
+        assertEquals("3001111111", agenda.buscarTelefono("Laura"));
+    }
+    
     
     
     
