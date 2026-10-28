@@ -26,4 +26,23 @@ public class ContactoTest {
 
         assertEquals("3148973615", c.getTelefono());
     }
+    
+    @Test
+    public void testSetNombre() {
+        Contacto c = new Contacto("Santiago", "3148973615");
+        c.setNombre("Laura");
+        // El nombre cambia de "Santiago" a "Laura"
+
+        assertEquals("Laura", c.getNombre());
+    }
+
+    @Test
+    public void testSetTelefono() {
+        Contacto c = new Contacto("Santiago", "3148973615");
+        c.setTelefono("3001234567");
+        // El teléfono cambia al nuevo valor
+
+        assertEquals("3001234567", c.getTelefono());
+    }
 }
+    
