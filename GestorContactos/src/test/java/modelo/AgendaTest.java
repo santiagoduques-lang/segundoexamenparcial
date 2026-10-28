@@ -33,5 +33,27 @@ public class AgendaTest {
 
         assertEquals(150, agenda.getContactos().length);
     }
+    
+     @Test
+    public void testAgregarContacto_Exitoso() {
+        Agenda agenda = new Agenda();
+        Contacto c = new Contacto("Santiago", "3148973615");
+        // Hay espacio disponible: devuelve true
+
+        assertTrue(agenda.agregarContacto(c));
+    }
+
+    @Test
+    public void testAgregarContacto_AumentaCantidad() {
+        Agenda agenda = new Agenda();
+        agenda.agregarContacto(new Contacto("Santiago", "3148973615"));
+        agenda.agregarContacto(new Contacto("Laura", "3001234567"));
+        // Se agregaron 2 contactos: cantidad = 2
+
+        assertEquals(2, agenda.getCantidad());
+    }
+    
+    
+    
 
 }
