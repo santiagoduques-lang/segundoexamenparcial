@@ -53,6 +53,28 @@ public class AgendaTest {
         assertEquals(2, agenda.getCantidad());
     }
     
+    @Test
+    public void testAgregarContacto_SeGuardaEnPrimeraPosicion() {
+        Agenda agenda = new Agenda();
+        Contacto c = new Contacto("Santiago", "3148973615");
+        agenda.agregarContacto(c);
+        // El primer contacto queda en la posición 0 del arreglo
+
+        assertSame(c, agenda.getContactos()[0]);
+    }
+
+    @Test
+    public void testAgregarContacto_AgendaLlena() {
+        Agenda agenda = new Agenda();
+        for (int i = 0; i < 150; i++) {
+            agenda.agregarContacto(new Contacto("Contacto" + i, "300" + i));
+        }
+        // Con 150 contactos la agenda está llena: el contacto 151 devuelve false
+
+        assertFalse(agenda.agregarContacto(new Contacto("Extra", "3999999999")));
+    }
+    
+    
     
     
 
